@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "unisafreerooms"
+version = "1.0.0"
+description = "Ricerca aule libere UNISA"
+authors = [
+    "Umberto Iennaco <u.iennaco@studenti.unisa.it>",
+    "Vincenzo Magna <v.magna@studenti.unisa.it>"
+]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+django = "^3.1.7"
+djangorestframework = "^3.12.2"
+requests = "^2.25.1"
+aiohttp = "^3.7.4"
+asyncio = "^3.4.3"
+python-dateutil = "^2.8.1"
+install = "^1.3.4"
+django-cors-headers = "^3.7.0"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
