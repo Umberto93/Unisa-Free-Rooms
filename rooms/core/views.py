@@ -11,7 +11,7 @@ from django.views.decorators.cache import cache_page
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
-AW_URL = 'https://kairos.unifi.it/agendaweb'
+AW_URL = 'https://easycourse.unisa.it/AgendaStudenti/'
 
 @api_view(['GET'])
 @cache_page(600)
