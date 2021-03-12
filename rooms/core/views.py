@@ -24,13 +24,13 @@ def rooms_list(request):
     dateto = request.GET.get('dateto')
 
     if datefrom is None:
-        datefrom = create_fixed_datetime(8)
+        datefrom = create_fixed_datetime(8, 30)
     else:
         datefrom = parser.isoparse(datefrom)
         datefrom = datefrom.replace(second=0, microsecond=0)
 
     if dateto is None:
-        dateto = create_fixed_datetime(20)
+        dateto = create_fixed_datetime(19, 30)
     else:
         dateto = parser.isoparse(dateto)
         dateto = dateto.replace(second=0, microsecond=0)
@@ -40,12 +40,12 @@ def rooms_list(request):
     return Response(rooms)
 
 
-def create_fixed_datetime(hours):
+def create_fixed_datetime(hours, minutes):
     """
     Crea un nuovo oggetto datetime fissando l'ora.
     """
 
-    return datetime.combine(datetime.now(), time(hours))
+    return datetime.combine(datetime.now(), time(hours, minutes))
 
 
 def get_buildings():
@@ -111,6 +111,7 @@ async def get_building_free_rooms(building, datefrom, dateto):
 
                 return free_rooms
     except Exception as e:
+        print('Errore:')
         print(e)
 
 
@@ -121,5 +122,4 @@ async def get_free_rooms(datefrom, dateto):
 
     buildings = get_buildings()
     rooms = await asyncio.gather(*[get_building_free_rooms(b, datefrom, dateto) for b in buildings])
-    cache.set('free_rooms', rooms)
     return rooms
